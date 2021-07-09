@@ -42,6 +42,7 @@ interface SettingsDataStore {
     var appLocationPermissionDeniedForever: Boolean
     var globalPrivacyControlEnabled: Boolean
     var appLinksEnabled: Boolean
+    var devSettingsEnabled: Boolean
 
     /**
      * This will be checked upon app startup and used to decide whether it should perform a clear or not.
@@ -151,6 +152,10 @@ class SettingsSharedPreferences constructor(private val context: Context, privat
         get() = preferences.getBoolean(APP_LINKS_ENABLED, true)
         set(enabled) = preferences.edit { putBoolean(APP_LINKS_ENABLED, enabled) }
 
+    override var devSettingsEnabled: Boolean
+        get() = preferences.getBoolean(KEY_DEV_SETTINGS_ENABLED, false)
+        set(enabled) = preferences.edit { putBoolean(KEY_DEV_SETTINGS_ENABLED, enabled) }
+
     override fun hasBackgroundTimestampRecorded(): Boolean = preferences.contains(KEY_APP_BACKGROUNDED_TIMESTAMP)
     override fun clearAppBackgroundTimestamp() = preferences.edit { remove(KEY_APP_BACKGROUNDED_TIMESTAMP) }
 
@@ -205,6 +210,7 @@ class SettingsSharedPreferences constructor(private val context: Context, privat
         const val KEY_SYSTEM_LOCATION_PERMISSION_DENIED_FOREVER = "KEY_SYSTEM_LOCATION_PERMISSION_DENIED_FOREVER"
         const val KEY_DO_NOT_SELL_ENABLED = "KEY_DO_NOT_SELL_ENABLED"
         const val APP_LINKS_ENABLED = "APP_LINKS_ENABLED"
+        const val KEY_DEV_SETTINGS_ENABLED = "KEY_DEV_SETTINGS_ENABLED"
 
         private val DEFAULT_ICON = if (BuildConfig.DEBUG) {
             AppIcon.BLUE
