@@ -132,7 +132,7 @@ dependencies {
     implementation project(path: ':di')
 
     implementation AndroidX.legacy.supportV4
-    debugImplementation Square.leakCanary.android
+    // debugImplementation Square.leakCanary.android
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
