@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <string name="appName" translatable="false">DuckDuckGo</string>
+    <string name="appName" translatable="false">DuckDuckPlus</string>
     <string name="appDescription" translatable="false">DuckDuckGo </string>
     <string name="duckDuckGoLogoDescription">Логотип DuckDuckGo</string>
     <string name="duckDuckGoPrivacySimplified">Максимум конфиденциальности, минимум усилий</string>

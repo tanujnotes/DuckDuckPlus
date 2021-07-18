@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <string name="appName" translatable="false">DuckDuckGo</string>
+    <string name="appName" translatable="false">DuckDuckPlus</string>
     <string name="appDescription" translatable="false">DuckDuckGo&#160;</string>
     <string name="duckDuckGoLogoDescription">DuckDuckGo logo</string>
     <string name="duckDuckGoPrivacySimplified">Privacy, simplified</string>
