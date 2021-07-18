@@ -330,7 +330,7 @@ class BrowserTabFragment :
         configureObservers()
         configurePrivacyGrade()
         configureWebView()
-        configureSwipeRefresh()
+//        configureSwipeRefresh()
         viewModel.registerWebViewListener(webViewClient, webChromeClient)
         configureOmnibarTextInput()
         configureFindInPage()
@@ -396,7 +396,7 @@ class BrowserTabFragment :
     override fun onResume() {
         super.onResume()
 
-        appBarLayout.setExpanded(true)
+//        appBarLayout.setExpanded(true)
         viewModel.onViewResumed()
 
         // onResume can be called for a hidden/backgrounded fragment, ensure this tab is visible.
@@ -524,7 +524,7 @@ class BrowserTabFragment :
         errorSnackbar.dismiss()
         newTabLayout.show()
         browserLayout.gone()
-        appBarLayout.setExpanded(true)
+//        appBarLayout.setExpanded(true)
         webView?.onPause()
         webView?.hide()
     }
@@ -725,7 +725,7 @@ class BrowserTabFragment :
 
     private fun locationPermissionsHaveNotBeenGranted(): Boolean {
         return ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
-            ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
     }
 
     private fun checkSystemLocationPermission(domain: String, deniedForever: Boolean) {
@@ -801,7 +801,7 @@ class BrowserTabFragment :
     }
 
     private fun openInNewBackgroundTab() {
-        appBarLayout.setExpanded(true, true)
+//        appBarLayout.setExpanded(true, true)
         viewModel.tabs.removeObservers(this)
         decorator.incrementTabs()
     }
@@ -823,7 +823,7 @@ class BrowserTabFragment :
 
     @RequiresApi(Build.VERSION_CODES.N)
     private fun getChooserIntent(url: String?, title: String, excludedComponents: List<ComponentName>): Intent {
-        val urlIntent = Intent.parseUri(url, URI_NO_FLAG)
+        val urlIntent = Intent.parseUri(url, Intent.URI_ALLOW_UNSAFE)
         val chooserIntent = Intent.createChooser(urlIntent, title)
         chooserIntent.putExtra(Intent.EXTRA_EXCLUDE_COMPONENTS, excludedComponents.toTypedArray())
         return chooserIntent
@@ -984,7 +984,10 @@ class BrowserTabFragment :
 
     private fun configureAutoComplete() {
         val context = context ?: return
-        autoCompleteSuggestionsList.layoutManager = LinearLayoutManager(context)
+        val linearLayoutManager = LinearLayoutManager(context)
+        linearLayoutManager.reverseLayout = true
+        linearLayoutManager.stackFromEnd = true
+        autoCompleteSuggestionsList.layoutManager = linearLayoutManager
         autoCompleteSuggestionsAdapter = BrowserAutoCompleteSuggestionsAdapter(
             immediateSearchClickListener = {
                 userSelectedAutocomplete(it)
@@ -1157,9 +1160,9 @@ class BrowserTabFragment :
                 false
             }
 
-            it.setEnableSwipeRefreshCallback { enable ->
-                swipeRefreshContainer?.isEnabled = enable
-            }
+//            it.setEnableSwipeRefreshCallback { enable ->
+//                swipeRefreshContainer?.isEnabled = enable
+//            }
 
             registerForContextMenu(it)
 
@@ -1174,23 +1177,23 @@ class BrowserTabFragment :
         }
     }
 
-    private fun configureSwipeRefresh() {
-        val metrics = resources.displayMetrics
-        val distanceToTrigger = (DEFAULT_CIRCLE_TARGET_TIMES_1_5 * metrics.density).toInt()
-        swipeRefreshContainer.setDistanceToTriggerSync(distanceToTrigger)
-        swipeRefreshContainer.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.cornflowerBlue))
+//    private fun configureSwipeRefresh() {
+//        val metrics = resources.displayMetrics
+//        val distanceToTrigger = (DEFAULT_CIRCLE_TARGET_TIMES_1_5 * metrics.density).toInt()
+//        swipeRefreshContainer.setDistanceToTriggerSync(distanceToTrigger)
+//        swipeRefreshContainer.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.cornflowerBlue))
+//
+//        swipeRefreshContainer.setOnRefreshListener {
+//            onRefreshRequested()
+//        }
+//
+//        swipeRefreshContainer.setCanChildScrollUpCallback {
+//            webView?.canScrollVertically(-1) ?: false
+//        }
 
-        swipeRefreshContainer.setOnRefreshListener {
-            onRefreshRequested()
-        }
-
-        swipeRefreshContainer.setCanChildScrollUpCallback {
-            webView?.canScrollVertically(-1) ?: false
-        }
-
-        // avoids progressView from showing under toolbar
-        swipeRefreshContainer.progressViewStartOffset = swipeRefreshContainer.progressViewStartOffset - 15
-    }
+    // avoids progressView from showing under toolbar
+//        swipeRefreshContainer.progressViewStartOffset = swipeRefreshContainer.progressViewStartOffset - 15
+//    }
 
     /**
      * Explicitly disable database to try protect against Magellan WebSQL/SQLite vulnerability
@@ -1663,15 +1666,15 @@ class BrowserTabFragment :
             menuButton?.isVisible = viewState.showMenuButton
 
             // omnibar only scrollable when browser showing and the fire button is not promoted
-            if (viewState.fireButton.playPulseAnimation()) {
-                omnibarScrolling.disableOmnibarScrolling(toolbarContainer)
-                playPulseAnimation()
-            } else {
-                if (viewState.browserShowing) {
-                    omnibarScrolling.enableOmnibarScrolling(toolbarContainer)
-                }
-                pulseAnimation.stop()
-            }
+//            if (viewState.fireButton.playPulseAnimation()) {
+//                omnibarScrolling.disableOmnibarScrolling(toolbarContainer)
+//                playPulseAnimation()
+//            } else {
+//                if (viewState.browserShowing) {
+//                    omnibarScrolling.enableOmnibarScrolling(toolbarContainer)
+//                }
+//                pulseAnimation.stop()
+//            }
         }
 
         private fun playPulseAnimation() {
@@ -1872,7 +1875,7 @@ class BrowserTabFragment :
 
                 if (shouldUpdateOmnibarTextInput(viewState, viewState.omnibarText)) {
                     omnibarTextInput.setText(viewState.omnibarText)
-                    appBarLayout.setExpanded(true, true)
+//                    appBarLayout.setExpanded(true, true)
                     if (viewState.shouldMoveCaretToEnd) {
                         omnibarTextInput.setSelection(viewState.omnibarText.length)
                     }
@@ -1904,9 +1907,9 @@ class BrowserTabFragment :
                     }
                 }
 
-                if (!viewState.isLoading && lastSeenBrowserViewState?.browserShowing == true) {
-                    swipeRefreshContainer.isRefreshing = false
-                }
+//                if (!viewState.isLoading && lastSeenBrowserViewState?.browserShowing == true) {
+//                    swipeRefreshContainer.isRefreshing = false
+//                }
             }
         }
 

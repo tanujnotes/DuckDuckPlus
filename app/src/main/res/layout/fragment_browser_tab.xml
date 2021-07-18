@@ -30,6 +30,7 @@
         android:background="?attr/colorPrimaryDark"
         android:elevation="10dp"
         android:visibility="gone"
+        android:layout_marginBottom="?attr/actionBarSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,11 +40,12 @@
         android:id="@+id/autoCompleteSuggestionsList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="?attr/actionBarSize"
         android:background="?toolbarBgColor"
         android:backgroundTint="?toolbarBgColor"
         android:clipToPadding="false"
         android:elevation="4dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:itemCount="3"
         tools:listitem="@layout/item_autocomplete_search_suggestion"
         tools:visibility="visible" />
@@ -52,39 +54,32 @@
         android:id="@+id/quickAccessSuggestionsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="?attr/actionBarSize"
         android:background="?toolbarBgColor"
         android:backgroundTint="?toolbarBgColor"
-        android:paddingTop="15dp"
         android:clipToPadding="false"
         android:elevation="4dp"
+        android:paddingTop="15dp"
         android:visibility="gone"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:visibility="visible" />
 
-    <include layout="@layout/include_new_browser_tab"
-        android:visibility="gone"/>
+    <include
+        layout="@layout/include_new_browser_tab"
+        android:visibility="gone" />
 
     <FrameLayout
         android:id="@+id/browserLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_marginBottom="?attr/actionBarSize"
         tools:context="com.duckduckgo.app.browser.BrowserActivity">
 
-        <com.duckduckgo.app.browser.ui.ScrollAwareRefreshLayout
-            android:id="@+id/swipeRefreshContainer"
+        <FrameLayout
+            android:id="@+id/webViewContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <FrameLayout
-                android:id="@+id/webViewContainer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:background="#4F00" />
-
-        </com.duckduckgo.app.browser.ui.ScrollAwareRefreshLayout>
+            android:layout_height="match_parent"
+            tools:background="#4F00" />
 
         <View
             android:id="@+id/focusDummy"
