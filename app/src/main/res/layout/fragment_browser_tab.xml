@@ -30,7 +30,6 @@
         android:background="?attr/colorPrimaryDark"
         android:elevation="10dp"
         android:visibility="gone"
-        android:layout_marginBottom="?attr/actionBarSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -396,7 +396,7 @@ class BrowserTabFragment :
     override fun onResume() {
         super.onResume()
 
-//        appBarLayout.setExpanded(true)
+        appBarLayout.setExpanded(true)
         viewModel.onViewResumed()
 
         // onResume can be called for a hidden/backgrounded fragment, ensure this tab is visible.
@@ -524,7 +524,7 @@ class BrowserTabFragment :
         errorSnackbar.dismiss()
         newTabLayout.show()
         browserLayout.gone()
-//        appBarLayout.setExpanded(true)
+        appBarLayout.setExpanded(true)
         webView?.onPause()
         webView?.hide()
     }
@@ -801,7 +801,7 @@ class BrowserTabFragment :
     }
 
     private fun openInNewBackgroundTab() {
-//        appBarLayout.setExpanded(true, true)
+        appBarLayout.setExpanded(true, true)
         viewModel.tabs.removeObservers(this)
         decorator.incrementTabs()
     }
@@ -1875,7 +1875,7 @@ class BrowserTabFragment :
 
                 if (shouldUpdateOmnibarTextInput(viewState, viewState.omnibarText)) {
                     omnibarTextInput.setText(viewState.omnibarText)
-//                    appBarLayout.setExpanded(true, true)
+                    appBarLayout.setExpanded(true, true)
                     if (viewState.shouldMoveCaretToEnd) {
                         omnibarTextInput.setSelection(viewState.omnibarText.length)
                     }
@@ -2184,6 +2184,7 @@ class BrowserTabFragment :
 
         private fun goFullScreen() {
             Timber.i("Entering full screen")
+            appBarLayout.gone()
             webViewFullScreenContainer.show()
             activity?.toggleFullScreen()
         }
@@ -2192,6 +2193,7 @@ class BrowserTabFragment :
             Timber.i("Exiting full screen")
             webViewFullScreenContainer.removeAllViews()
             webViewFullScreenContainer.gone()
+            appBarLayout.show()
             activity?.toggleFullScreen()
             focusDummy.requestFocus()
         }
