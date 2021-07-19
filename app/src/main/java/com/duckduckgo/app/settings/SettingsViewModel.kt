@@ -108,7 +108,7 @@ class SettingsViewModel @Inject constructor(
             viewState.emit(
                 currentViewState().copy(
                     loading = false,
-                    lightThemeEnabled = isLightTheme,
+                    lightThemeEnabled = isLightTheme, // Always false. Dark mode is the only mode.
                     autoCompleteSuggestionsEnabled = settingsDataStore.autoCompleteSuggestionsEnabled,
                     isAppDefaultBrowser = defaultBrowserAlready,
                     showDefaultBrowserSetting = defaultWebBrowserCapability.deviceSupportsDefaultBrowserConfiguration(),
