@@ -41,15 +41,15 @@ import com.duckduckgo.app.global.view.quietlySetIsChecked
 import com.duckduckgo.app.globalprivacycontrol.ui.GlobalPrivacyControlActivity
 import com.duckduckgo.app.icon.ui.ChangeIconActivity
 import com.duckduckgo.app.location.ui.LocationPermissionsActivity
+import com.duckduckgo.app.pixels.AppPixelName
 import com.duckduckgo.app.privacy.ui.WhitelistActivity
 import com.duckduckgo.app.settings.SettingsViewModel.AutomaticallyClearData
 import com.duckduckgo.app.settings.SettingsViewModel.Command
 import com.duckduckgo.app.settings.clear.ClearWhatOption
 import com.duckduckgo.app.settings.clear.ClearWhenOption
 import com.duckduckgo.app.settings.clear.FireAnimation
-import com.duckduckgo.app.statistics.pixels.Pixel
-import com.duckduckgo.app.pixels.AppPixelName
 import com.duckduckgo.app.settings.extension.InternalFeaturePlugin
+import com.duckduckgo.app.statistics.pixels.Pixel
 import com.duckduckgo.mobile.android.ui.sendThemeChangedBroadcast
 import kotlinx.android.synthetic.main.content_settings_general.*
 import kotlinx.android.synthetic.main.content_settings_internal.*
@@ -102,8 +102,6 @@ class SettingsActivity :
     }
 
     private fun configureUiEventHandlers() {
-        changeAppIconLabel.setOnClickListener { viewModel.userRequestedToChangeIcon() }
-        selectedFireAnimationSetting.setOnClickListener { viewModel.userRequestedToChangeFireAnimation() }
         about.setOnClickListener { startActivity(AboutDuckDuckGoActivity.intent(this)) }
         provideFeedback.setOnClickListener { viewModel.userRequestedToSendFeedback() }
         fireproofWebsites.setOnClickListener { viewModel.onFireproofWebsitesClicked() }
@@ -119,7 +117,8 @@ class SettingsActivity :
     }
 
     private fun configureInternalFeatures() {
-        settingsSectionInternal.visibility = if (internalFeaturePlugins.getPlugins().isEmpty()) View.GONE else View.VISIBLE
+        settingsSectionInternal.visibility =
+            if (internalFeaturePlugins.getPlugins().isEmpty()) View.GONE else View.VISIBLE
         internalFeaturePlugins.getPlugins().forEach { feature ->
             Timber.v("Adding internal feature ${feature.internalFeatureTitle()}")
             val view = SettingsOptionWithSubtitle(this).apply {
@@ -145,12 +144,13 @@ class SettingsActivity :
             .onEach { viewState ->
                 viewState.let {
                     version.setSubtitle(it.version)
-                    autocompleteToggle.quietlySetIsChecked(it.autoCompleteSuggestionsEnabled, autocompleteToggleListener)
+                    autocompleteToggle.quietlySetIsChecked(
+                        it.autoCompleteSuggestionsEnabled,
+                        autocompleteToggleListener
+                    )
                     updateDefaultBrowserViewVisibility(it)
                     updateAutomaticClearDataOptions(it.automaticallyClearData)
                     setGlobalPrivacyControlSetting(it.globalPrivacyControlEnabled)
-                    changeAppIcon.setImageResource(it.appIcon.icon)
-                    updateSelectedFireAnimation(it.selectedFireAnimation)
                     appLinksToggle.quietlySetIsChecked(it.appLinksEnabled, appLinksToggleListener)
                 }
             }.launchIn(lifecycleScope)
@@ -168,11 +168,6 @@ class SettingsActivity :
             getString(R.string.disabled)
         }
         globalPrivacyControlSetting.setSubtitle(stateText)
-    }
-
-    private fun updateSelectedFireAnimation(fireAnimation: FireAnimation) {
-        val subtitle = getString(fireAnimation.nameResId)
-        selectedFireAnimationSetting.setSubtitle(subtitle)
     }
 
     private fun updateAutomaticClearDataOptions(automaticallyClearData: AutomaticallyClearData) {

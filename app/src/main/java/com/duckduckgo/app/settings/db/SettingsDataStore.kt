@@ -105,7 +105,8 @@ class SettingsSharedPreferences constructor(private val context: Context, privat
         set(value) = preferences.edit { putString(KEY_SELECTED_FIRE_ANIMATION, fireAnimationMapper.prefValue(value)) }
 
     override val fireAnimationEnabled: Boolean
-        get() = selectedFireAnimation.resId != -1
+        get() = false
+//        get() = selectedFireAnimation.resId != -1
 
     // Changing the app icon makes the app close in some devices / OS versions. This is a problem if the user has
     // selected automatic data / tabs clear. We will use this flag to track if the user has changed the icon
