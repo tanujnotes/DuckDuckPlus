@@ -28,7 +28,7 @@ class ThemingSharedPreferences @Inject constructor(private val context: Context)
         get() {
             val themeName = preferences.getString(KEY_THEME, null)
             return if (themeName == null) {
-                DuckDuckGoTheme.LIGHT
+                DuckDuckGoTheme.DARK
             } else {
                 DuckDuckGoTheme.valueOf(themeName)
             }
