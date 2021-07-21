@@ -77,6 +77,10 @@ class SettingsActivity :
 
     private val defaultBrowserChangeListener = OnCheckedChangeListener { _, _ -> launchDefaultAppScreen() }
 
+    private val lightThemeToggleListener = OnCheckedChangeListener { _, isChecked ->
+        viewModel.onLightThemeToggled(isChecked)
+    }
+
     private val autocompleteToggleListener = OnCheckedChangeListener { _, isChecked ->
         viewModel.onAutocompleteSettingChanged(isChecked)
     }
@@ -108,6 +112,7 @@ class SettingsActivity :
         locationPermissions.setOnClickListener { viewModel.onLocationClicked() }
         globalPrivacyControlSetting.setOnClickListener { viewModel.onGlobalPrivacyControlClicked() }
 
+        lightThemeToggle.setOnCheckedChangeListener(lightThemeToggleListener)
         autocompleteToggle.setOnCheckedChangeListener(autocompleteToggleListener)
         setAsDefaultBrowserSetting.setOnCheckedChangeListener(defaultBrowserChangeListener)
         automaticallyClearWhatSetting.setOnClickListener { viewModel.onAutomaticallyClearWhatClicked() }
@@ -144,10 +149,8 @@ class SettingsActivity :
             .onEach { viewState ->
                 viewState.let {
                     version.setSubtitle(it.version)
-                    autocompleteToggle.quietlySetIsChecked(
-                        it.autoCompleteSuggestionsEnabled,
-                        autocompleteToggleListener
-                    )
+                    lightThemeToggle.quietlySetIsChecked(it.lightThemeEnabled, lightThemeToggleListener)
+                    autocompleteToggle.quietlySetIsChecked(it.autoCompleteSuggestionsEnabled, autocompleteToggleListener)
                     updateDefaultBrowserViewVisibility(it)
                     updateAutomaticClearDataOptions(it.automaticallyClearData)
                     setGlobalPrivacyControlSetting(it.globalPrivacyControlEnabled)

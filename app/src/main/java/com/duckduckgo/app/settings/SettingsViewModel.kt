@@ -111,7 +111,7 @@ class SettingsViewModel @Inject constructor(
             viewState.emit(
                 currentViewState().copy(
                     loading = false,
-                    lightThemeEnabled = isLightTheme, // Always false. Dark mode is the only mode.
+                    lightThemeEnabled = isLightTheme,
                     autoCompleteSuggestionsEnabled = settingsDataStore.autoCompleteSuggestionsEnabled,
                     isAppDefaultBrowser = defaultBrowserAlready,
                     showDefaultBrowserSetting = defaultWebBrowserCapability.deviceSupportsDefaultBrowserConfiguration(),
@@ -304,7 +304,14 @@ class SettingsViewModelFactory @Inject constructor(
     override fun <T : ViewModel?> create(modelClass: Class<T>): T? {
         with(modelClass) {
             return when {
-                isAssignableFrom(SettingsViewModel::class.java) -> (SettingsViewModel(themingDataStore.get(), settingsDataStore.get(), defaultWebBrowserCapability.get(), variantManager.get(), fireAnimationLoader.get(), pixel.get()) as T)
+                isAssignableFrom(SettingsViewModel::class.java) -> (SettingsViewModel(
+                    themingDataStore.get(),
+                    settingsDataStore.get(),
+                    defaultWebBrowserCapability.get(),
+                    variantManager.get(),
+                    fireAnimationLoader.get(),
+                    pixel.get()
+                ) as T)
                 else -> null
             }
         }
