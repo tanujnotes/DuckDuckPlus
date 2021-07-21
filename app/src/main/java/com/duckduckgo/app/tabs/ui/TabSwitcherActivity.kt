@@ -119,7 +119,7 @@ class TabSwitcherActivity : DuckDuckGoActivity(), TabSwitcherListener, Coroutine
 
     private fun configureRecycler() {
         val numberColumns = gridViewColumnCalculator.calculateNumberOfColumns(TAB_GRID_COLUMN_WIDTH_DP, TAB_GRID_MAX_COLUMN_COUNT)
-        val layoutManager = GridLayoutManager(this, numberColumns)
+        val layoutManager = GridLayoutManager(this, numberColumns, RecyclerView.VERTICAL, true)
         tabsRecycler.layoutManager = layoutManager
         tabsRecycler.adapter = tabsAdapter
 
