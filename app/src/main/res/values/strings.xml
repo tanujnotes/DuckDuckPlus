@@ -172,10 +172,9 @@
     <!-- About Activity -->
     <string name="aboutActivityTitle">About DuckDuckPlus</string>
     <string name="aboutDescription">
-        At DuckDuckPlus, we\'re setting the new standard of trust online.\n\n
-        DuckDuckPlus Privacy Browser provides all the privacy essentials you need to protect yourself as you search and browse the web, including tracker blocking, smarter encryption, and DuckDuckPlus private search.\n\n
-        After all, the internet shouldn\'t feel so creepy, and getting the privacy you deserve online should be as simple as closing the blinds.</string>
-    <string name="aboutMoreLink">More at duckduckgo.com/about</string>
+        DuckDuckPlus is a fork of open source DuckDuckGo browser.\n\n
+        In this version, we have moved toolbar to the bottom and removed certain features like swipe to refresh, multiple logos, etc, for arguably a better user experience. More at</string>
+    <string name="aboutMoreLink">github.com/tanujnotes/duckduckplus</string>
     <string name="no_suggestions">No Suggestions</string>
 
     <!-- Broken Site Activity -->

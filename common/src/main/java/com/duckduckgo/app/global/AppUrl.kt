@@ -23,7 +23,7 @@ class AppUrl {
         const val API = "https://$HOST"
         const val HOME = "https://$HOST"
         const val COOKIES = "https://$HOST"
-        const val ABOUT = "https://$HOST/about"
+        const val ABOUT = "https://github.com/tanujnotes/duckduckplus"
         const val TOSDR = "https://tosdr.org"
         const val PIXEL = "https://improving.duckduckgo.com"
     }
