@@ -20,42 +20,6 @@
     android:orientation="vertical"
     android:background="@drawable/popup_menu_bg">
 
-    <LinearLayout
-        android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/backPopupMenuItem"
-            style="@style/BrowserIconMenuItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:contentDescription="@string/back"
-            android:src="@drawable/ic_back" />
-
-        <ImageButton
-            android:id="@+id/forwardPopupMenuItem"
-            style="@style/BrowserIconMenuItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:contentDescription="@string/forward"
-            android:src="@drawable/ic_forward" />
-
-        <ImageButton
-            android:id="@+id/refreshPopupMenuItem"
-            style="@style/BrowserIconMenuItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:contentDescription="@string/refresh"
-            android:src="@drawable/ic_refresh" />
-
-    </LinearLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -64,8 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="13dp"
-            android:paddingBottom="20dp">
+            android:paddingVertical="12dp">
 
             <TextView
                 android:id="@+id/newTabPopupMenuItem"
@@ -153,5 +116,41 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/backPopupMenuItem"
+            style="@style/BrowserIconMenuItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/back"
+            android:src="@drawable/ic_back" />
+
+        <ImageButton
+            android:id="@+id/forwardPopupMenuItem"
+            style="@style/BrowserIconMenuItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/forward"
+            android:src="@drawable/ic_forward" />
+
+        <ImageButton
+            android:id="@+id/refreshPopupMenuItem"
+            style="@style/BrowserIconMenuItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/refresh"
+            android:src="@drawable/ic_refresh" />
+
+    </LinearLayout>
 
 </LinearLayout>
