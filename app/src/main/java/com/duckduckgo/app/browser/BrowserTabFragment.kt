@@ -1394,7 +1394,7 @@ class BrowserTabFragment :
      */
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        ddgLogo.setImageResource(R.drawable.logo_full)
+        ddgLogo.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.logo_full, 0, 0)
         if (ctaContainer.isNotEmpty()) {
             renderer.renderHomeCta()
         }
